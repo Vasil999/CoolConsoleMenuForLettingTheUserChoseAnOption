@@ -11,8 +11,8 @@ namespace CooleConsoleMenu
         public static int MultipleChoice(bool canCancel, params string[] options)
         {
             //setting starting points for our program
-            const int startX = 15;
-            const int startY = 8;
+            const int startX = 1;
+            const int startY = 1;
 
             //setting the values for our lines
             const int optionsPerLine = 3;
@@ -53,24 +53,32 @@ namespace CooleConsoleMenu
                         {
                             if (currentSelection % optionsPerLine > 0)
                                 currentSelection--;
+                            else
+                                currentSelection += optionsPerLine - 1;
                             break;
                         }
                     case ConsoleKey.RightArrow:
                         {
                             if (currentSelection % optionsPerLine < optionsPerLine - 1)
                                 currentSelection++;
+                            else
+                                currentSelection -= optionsPerLine - 1;
                             break;
                         }
                     case ConsoleKey.UpArrow:
                         {
                             if (currentSelection >= optionsPerLine)
                                 currentSelection -= optionsPerLine;
+                            else
+                                currentSelection += options.Length - optionsPerLine; 
                             break;
                         }
                     case ConsoleKey.DownArrow:
                         {
                             if (currentSelection + optionsPerLine < options.Length)
                                 currentSelection += optionsPerLine;
+                            else
+                                currentSelection += optionsPerLine - options.Length;
                             break;
                         }
                     case ConsoleKey.Escape:
